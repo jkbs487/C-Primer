@@ -4,7 +4,7 @@
 
 ### 运行环境
 
-代码的运行环境是 vs2019
+Microsoft Visual Studio 2019
 
 ### 文件说明
 
@@ -14,6 +14,6 @@
 
 `WordAnalysis.h`:单词分割示例代码
 
-`TextQuery.h`&`QueryResult.h`:文本查询示例代码（p.）
+`TextQuery.h`&`QueryResult.h`:文本查询示例代码（p.340）
 
 `word_transform.h`:文本转换示例代码（p.391）
