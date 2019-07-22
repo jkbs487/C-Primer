@@ -12,8 +12,6 @@
 		remMsg(): 从本文件夹中删除给定的消息
 */
 
-
-
 #pragma once
 #include<string>
 #include<set>
@@ -23,6 +21,7 @@ using namespace std;
 
 class Message {
 	friend class Folder;
+	friend void swap(Message&, Message&);
 public:
 	//folders被隐式初始化为空集合
 	explicit Message(const string& str = ""): contents(str) { }
@@ -48,3 +47,4 @@ private:
 	void remove_from_Folders();
 };
 
+void swap(Message&, Message&);

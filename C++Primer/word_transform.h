@@ -9,8 +9,6 @@
 
 */
 
-
-
 #pragma once
 
 #include <iostream>
@@ -19,9 +17,9 @@
 #include <fstream>
 #include <sstream>
 
-//word_transform.h: 提供单词转换功能
-
 using namespace std;
+
+//word_transform: 提供单词转换功能
 map<string, string> buildMap(ifstream& map_file) {
 	map<string, string> trans_map;	//保存转换规则
 	string key;						//要转换的单词

@@ -10,12 +10,10 @@
 -------------------------------------------------
 */
 
-
 #include "WordAnalysis.h"
 #include "TextQuery.h"
 #include "word_transform.h"
 #include "Message.h"
-
 using namespace std;
 
 //µ•¥ ∑÷∏Ó≤‚ ‘

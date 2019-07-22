@@ -41,3 +41,25 @@ void Message::print() {
 		cout << f->getName() << " ";
 	}
 }
+
+//重写swap函数
+void swap(Message& lhs, Message& rhs) {
+	using std::swap;		//这是一个好习惯
+	//将每个消息的指针从它所在的 Folder 中删除
+	for (auto f : lhs.folders) {
+		f->remMsg(&lhs);
+	}
+	for (auto f : rhs.folders) {
+		f->remMsg(&rhs);
+	}
+	//交换内容
+	swap(lhs.folders, rhs.folders);		//swap(set&, set&);
+	swap(lhs.contents, rhs.contents);	//swap(string&, string&);
+	//将每个 Message 的指针添加到其新的 Folder 中
+	for (auto f : lhs.folders) {
+		f->addMsg(&lhs);
+	}
+	for (auto f : rhs.folders) {
+		f->addMsg(&rhs);
+	}
+}

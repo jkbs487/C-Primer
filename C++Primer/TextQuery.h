@@ -1,5 +1,5 @@
 /*
-				文本查询示例
+				文本查询示例（C++primer p.430）
 	
 
 
@@ -20,7 +20,6 @@
 #include <map>
 #include <set>
 #include "QueryResult.h"
-
 using namespace std;
 
 //class TextQuery: 通过读取一个文件，可以查询其中的单词出现次数，并显示其行数

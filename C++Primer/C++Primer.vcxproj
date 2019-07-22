@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="Folder.cpp" />
     <ClCompile Include="Message.cpp" />
+    <ClCompile Include="strVec.cpp" />
     <ClCompile Include="WordAnalysis.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="QueryResult.cpp" />
@@ -161,6 +162,7 @@
   <ItemGroup>
     <ClInclude Include="Folder.h" />
     <ClInclude Include="Message.h" />
+    <ClInclude Include="strVec.h" />
     <ClInclude Include="WordAnalysis.h" />
     <ClInclude Include="QueryResult.h" />
     <ClInclude Include="resource.h" />

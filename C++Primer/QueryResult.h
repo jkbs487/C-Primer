@@ -5,8 +5,8 @@
 #include <map>
 #include <set>
 #include <iostream>
-
 using namespace std;
+
 //µ•¥ ≤È—Ø¿‡
 class QueryResult
 {

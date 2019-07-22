@@ -33,6 +33,9 @@
     <ClCompile Include="Folder.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="strVec.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TextQuery.h">
@@ -54,6 +57,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Folder.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="strVec.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
