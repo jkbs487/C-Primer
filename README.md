@@ -19,3 +19,5 @@ Microsoft Visual Studio 2019
 - `word_transform.h`:文本转换示例代码（p.391）
 
 - `StrVec.h`:动态内存管理示例代码（p.464）
+
+- `Message.h`&`Folder.h`:拷贝控制示例代码（p.460）
