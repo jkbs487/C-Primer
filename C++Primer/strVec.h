@@ -7,11 +7,13 @@
 	-------------------------------------
 	|                    |               |       
  element             first_free         cap
+
 */
 
 #pragma once
 #include <string>
 #include <memory>
+#include <utility>
 using namespace std;
 //表 vector 类内存分配策略的简化实现
 class StrVec {
