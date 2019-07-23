@@ -14,6 +14,7 @@
 #include "TextQuery.h"
 #include "word_transform.h"
 #include "Message.h"
+#include "strVec.h"
 using namespace std;
 
 //单词分割测试
@@ -50,6 +51,39 @@ void Message_test() {
 	return;
 }
 
+//动态内存管理测试
+void strVec_test() {
+	StrVec str;
+	for (int i = 0; i < 24; i++) {
+		str.push_back("1");
+	}
+	cout << "str: size: " << str.size() << " str: capacity: " << str.capacity() << endl;
+	str.reserve(50);
+	for (int i = 0; i < str.size(); i++) {
+		cout << str[i] << " ";
+	}
+	cout << endl;
+	cout << "str: size: " << str.size() << " str: capacity: " << str.capacity() << endl;
+	str.resize(20);
+	for (int i = 0; i < str.size(); i++) {
+		cout << str[i] << " ";
+	}
+	cout << endl;
+	cout << "str: size: " << str.size() << " str: capacity: " << str.capacity() << endl;
+	str.resize(30);
+	for (int i = 0; i < str.size(); i++) {
+		cout << str[i] << " ";
+	}
+	cout << endl;
+	cout << "str: size: " << str.size() << " str: capacity: " << str.capacity() << endl;
+	str.reserve(20);
+	for (int i = 0; i < str.size(); i++) {
+		cout << str[i] << " ";
+	}
+	cout << endl;
+	cout << "str: size: " << str.size() << " str: capacity: " << str.capacity() << endl;
+}
+
 int main()
 {
 	string command;
@@ -58,6 +92,7 @@ int main()
 	cout << "           2.文本查询              " << endl;
 	cout << "           3.文本转换              " << endl;
 	cout << "           4.拷贝控制              " << endl;
+	cout << "         5.动态内存管理            " << endl;
 	cout << "-----------------------------------" << endl;
 	while (getline(cin, command)) {
 		switch (stoi(command)) {
@@ -76,6 +111,10 @@ int main()
 			case 4: 
 				cout << "------------拷贝控制测试--------------- " << endl;
 				Message_test();
+				break;
+			case 5:
+				cout << "------------动态内存管理测试--------------- " << endl;
+				strVec_test();
 				break;
 			default:
 				cout << "输入错误！" << endl;

@@ -15,12 +15,14 @@
 #include <memory>
 #include <utility>
 using namespace std;
+static allocator<string> alloc;//分配元素
 //表 vector 类内存分配策略的简化实现
 class StrVec {
 public:
 	StrVec(): elements(nullptr), first_free(nullptr), cap(nullptr){ };
 	StrVec(const StrVec&);
 	StrVec& operator=(const StrVec&);
+	string operator[](size_t);
 	~StrVec();
 	void push_back(const string&);
 	size_t size() const{
@@ -35,8 +37,9 @@ public:
 	string* end() const {
 		return first_free;
 	}
+	void reserve(size_t n);
+	void resize(size_t n);
 private:
-	static allocator<string> alloc;//分配元素
 	void chk_n_alloc() {
 		if (size() == capacity())
 			reallocate();
