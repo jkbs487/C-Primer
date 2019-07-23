@@ -17,3 +17,5 @@ Microsoft Visual Studio 2019
 `TextQuery.h`&`QueryResult.h`:文本查询示例代码（p.340）
 
 `word_transform.h`:文本转换示例代码（p.391）
+
+`StrVec.h`:动态内存管理示例代码（p.464）
