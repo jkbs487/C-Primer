@@ -61,22 +61,27 @@ void StrVec::reallocate() {
 	auto dest = newdata;
 	auto elem = elements;
 	for (size_t i = 0; i != size(); i++) {
-		alloc.construct(dest++, move(*elem++));
+		alloc.construct(dest++, std::move(*elem++));
 	}
+	//还可以使用移动迭代器移动元素
+	//auto first = alloc.allocate(newcapacity);
+	//auto last = uninitialized_copy(make_move_iterator(begin()), make_move_iterator(end()), first);
 	free();
 	elements = newdata;
 	first_free = dest;
 	cap = elements + newcapacity;
 }
 void StrVec::reserve(size_t n) {
+	//只有 reserve 的空间大于总容量的时候才执行
 	if (n > capacity()) {
 		auto newdata = alloc.allocate(n);
 		auto dest = newdata;
 		auto elem = elements;
+		//将原先空间的元素移动到新分配的空间
 		for (size_t i = 0; i != size(); i++) {
 			alloc.construct(dest++, move(*elem++));
 		}
-		free();
+		free();				//释放原先的空间
 		elements = newdata;
 		first_free = dest;
 		cap = elements + n;
@@ -85,22 +90,43 @@ void StrVec::reserve(size_t n) {
 }
 
 void StrVec::resize(size_t n) {
+	// resize 的空间大于元素已使用空间的情况
 	if (n > size() && n <= capacity()) {
 		auto m = n - size();
 		for (size_t i = 0; i != m; i++)
+			//构造多余出的空间
 			alloc.construct(first_free++);
-	//	first_free = elements + n;
 	}
+	// resize 的空间小于元素已使用空间的情况
 	else if (n < size()) {
 		auto m = size() - n;
 		for (size_t i = 0; i != m; i++) {
+			//销毁不需要的空间
 			alloc.destroy(--first_free);
 		}
-	//	first_free = elements + n;
 	}
 	return;
 }
 
 string StrVec::operator[](size_t n) {
 	return *(elements + n);
+}
+
+StrVec& StrVec::operator=(StrVec&& rhs) noexcept {
+	//检测自赋值
+	if (this != &rhs) {
+		free();			//释放已有元素
+		//从 rhs 接管资源
+		elements = rhs.elements;
+		first_free = rhs.first_free;
+		cap = rhs.cap;
+		//将 rhs 置于可析构状态
+		rhs.elements = rhs.first_free = rhs.cap = nullptr;
+	}
+	return *this;
+}
+
+void StrVec::push_back(string&& s) {
+	chk_n_alloc();
+	alloc.construct(first_free++, std::move(s));
 }

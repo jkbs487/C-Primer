@@ -63,3 +63,22 @@ void swap(Message& lhs, Message& rhs) {
 		f->addMsg(&rhs);
 	}
 }
+
+//从本 Message 移动 Folder 指针
+void Message::move_Folders(Message* m) {
+	folders = std::move(m->folders);	//使用 set 的移动赋值运算符
+	for (auto f : folders) {			//对每个 Folder
+		f->remMsg(m);					//从 Folder 中删除旧 Message
+		f->addMsg(this);				//将本 Message 添加到 Folder 中
+	}
+	m->folders.clear();					//确保销毁 m 是无害的
+}
+
+Message& Message::operator=(Message&& rhs) noexcept {
+	if (this != &rhs) {
+		remove_from_Folders();
+		contents = std::move(rhs.contents);
+		move_Folders(&rhs);
+	}
+	return *this;
+}

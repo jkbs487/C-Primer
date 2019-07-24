@@ -36,6 +36,15 @@
     <ClCompile Include="strVec.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Screen.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="StrBlob.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="StrBlobPtr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TextQuery.h">
@@ -60,6 +69,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="strVec.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="StrBlob.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="StrBlobPtr.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

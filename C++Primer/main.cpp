@@ -6,6 +6,8 @@
 		TextQuery & QueryResult：文本查询程序
 		word_transform：文本转换程序
 		Message & Folder：拷贝控制程序
+		strVec：动态内存管理程序
+		strBlob & strBlobPtr：动态内存示例程序
 
 -------------------------------------------------
 */

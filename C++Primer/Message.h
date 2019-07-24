@@ -17,29 +17,32 @@
 #include<set>
 #include <iostream>
 #include "Folder.h"
-using namespace std;
 
 class Message {
 	friend class Folder;
 	friend void swap(Message&, Message&);
 public:
 	//folders被隐式初始化为空集合
-	explicit Message(const string& str = ""): contents(str) { }
+	explicit Message(const std::string& str = ""): contents(str) { }
 	//拷贝控制成员，用来管理指向本 Message 的指针
 	Message(const Message&);			//拷贝构造函数
+	Message(Message&& m) noexcept : contents(std::move(m.contents)) {	//移动构造函数
+		move_Folders(&m);
+	};
 	Message& operator=(const Message&);	//拷贝赋值运算符
+	Message& operator=(Message&&) noexcept;	//移动赋值运算符
 	~Message();							//析构函数
 	//从给定 Folder 集合中添加/删除本 Message
 	void save(Folder&);
 	void remove(Folder&);
-
+	void move_Folders(Message*);		//移动操作
 	//void addFold(Folder*);
 	//void remFold(Folder*);
 
 	void print();
 private:
-	string contents;					//实际消息文本
-	set <Folder*> folders;				//包含本 Message 的 Folder
+	std::string contents;					//实际消息文本
+	std::set <Folder*> folders;				//包含本 Message 的 Folder
 	//拷贝构造函数、拷贝赋值运算符和析构函数所使用的工具函数
 	//将本 Message 添加到指向参数的 Folder 中
 	void add_to_Folders(const Message&);

@@ -20,11 +20,19 @@ static allocator<string> alloc;//分配元素
 class StrVec {
 public:
 	StrVec(): elements(nullptr), first_free(nullptr), cap(nullptr){ };
+	//拷贝构造函数
 	StrVec(const StrVec&);
+	//移动拷贝构造函数
+	StrVec(StrVec&& s) noexcept : elements(s.elements), first_free(s.first_free), cap(s.cap) {
+		s.elements = s.first_free = s.cap = nullptr;
+	}
+	//赋值运算符重载
 	StrVec& operator=(const StrVec&);
+	StrVec& operator=(StrVec&&) noexcept;
 	string operator[](size_t);
 	~StrVec();
-	void push_back(const string&);
+	void push_back(const string&);	//拷贝元素
+	void push_back(string&&);		//移动元素
 	size_t size() const{
 		return first_free - elements;
 	}
@@ -39,6 +47,9 @@ public:
 	}
 	void reserve(size_t n);
 	void resize(size_t n);
+	bool empty() {
+		return (elements == first_free);
+	}
 private:
 	void chk_n_alloc() {
 		if (size() == capacity())
