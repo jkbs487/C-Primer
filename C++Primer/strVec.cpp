@@ -12,17 +12,23 @@
 
 #include "strVec.h"
 
-void StrVec::push_back(const string& s) {
+StrVec::StrVec(std::initializer_list<std::string> il) {
+	auto newdata = alloc_n_copy(il.begin(), il.end());
+	elements = newdata.first;
+	first_free = cap = newdata.second;
+}
+
+void StrVec::push_back(const std::string& s) {
 	chk_n_alloc();	//确保有空间容纳新元素
 	//在 first_free 指向的元素中构造 s 的副本
 	alloc.construct(first_free++, s);
 }
 
-pair<string*, string*> StrVec::alloc_n_copy(const string* b, const string* e) {
+std::pair<std::string*, std::string*> StrVec::alloc_n_copy(const std::string* b, const std::string* e) {
 	//分配空间保存给定范围中的元素
 	auto data = alloc.allocate(e - b);
 	//初始化并返回一个 pair，该 pair 由 data 和 unitialized_copy 的返回值构成
-	return { data, uninitialized_copy(b, e, data) };
+	return { data, std::uninitialized_copy(b, e, data) };
 }
 
 void StrVec::free() {
@@ -89,18 +95,18 @@ void StrVec::reserve(size_t n) {
 	return;
 }
 
-void StrVec::resize(size_t n) {
+void StrVec::resize(std::size_t n) {
 	// resize 的空间大于元素已使用空间的情况
 	if (n > size() && n <= capacity()) {
 		auto m = n - size();
-		for (size_t i = 0; i != m; i++)
+		for (std::size_t i = 0; i != m; i++)
 			//构造多余出的空间
 			alloc.construct(first_free++);
 	}
 	// resize 的空间小于元素已使用空间的情况
 	else if (n < size()) {
 		auto m = size() - n;
-		for (size_t i = 0; i != m; i++) {
+		for (std::size_t i = 0; i != m; i++) {
 			//销毁不需要的空间
 			alloc.destroy(--first_free);
 		}
@@ -108,7 +114,7 @@ void StrVec::resize(size_t n) {
 	return;
 }
 
-string StrVec::operator[](size_t n) {
+std::string StrVec::operator[](std::size_t n) {
 	return *(elements + n);
 }
 
@@ -126,7 +132,7 @@ StrVec& StrVec::operator=(StrVec&& rhs) noexcept {
 	return *this;
 }
 
-void StrVec::push_back(string&& s) {
+void StrVec::push_back(std::string&& s) {
 	chk_n_alloc();
 	alloc.construct(first_free++, std::move(s));
 }

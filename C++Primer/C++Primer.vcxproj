@@ -155,7 +155,6 @@
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="StrBlob.cpp" />
-    <ClCompile Include="StrBlobPtr.cpp" />
     <ClCompile Include="strVec.cpp" />
     <ClCompile Include="WordAnalysis.cpp" />
     <ClCompile Include="main.cpp" />
@@ -167,7 +166,6 @@
     <ClInclude Include="Message.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="StrBlob.h" />
-    <ClInclude Include="StrBlobPtr.h" />
     <ClInclude Include="strVec.h" />
     <ClInclude Include="WordAnalysis.h" />
     <ClInclude Include="QueryResult.h" />

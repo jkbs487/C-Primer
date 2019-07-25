@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <iostream>
 
 class Screen {
 public:
@@ -16,10 +17,14 @@ public:
 	void some_member() const;
 	Screen& set(char);
 	Screen& set(pos, pos, char);
+	//根据对象是否是 const 重载了 display 函数
+	Screen& display(std::ostream& os) { do_display(os); return *this; }
+	const Screen& display(std::ostream& os) const { do_display(os); return *this; }
 private:
 	pos cursor = 0;
 	pos height = 0, width = 0;
 	std::string contents;
 	mutable size_t access_ctr = 0;	//即使在一个 const 对象内也能被修改
+	void do_display(std::ostream& os) const { os << contents; }
 };
 

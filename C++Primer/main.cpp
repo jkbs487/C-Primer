@@ -17,6 +17,7 @@
 #include "word_transform.h"
 #include "Message.h"
 #include "strVec.h"
+
 using namespace std;
 
 //单词分割测试
@@ -54,8 +55,9 @@ void Message_test() {
 }
 
 //动态内存管理测试
+
 void strVec_test() {
-	StrVec str;
+	StrVec str({"2","2"});
 	for (int i = 0; i < 24; i++) {
 		str.push_back("1");
 	}
@@ -123,3 +125,4 @@ int main()
 		}
 	}
 }
+
