@@ -38,7 +38,6 @@ public:
 	void move_Folders(Message*);		//移动操作
 	//void addFold(Folder*);
 	//void remFold(Folder*);
-
 	void print();
 private:
 	std::string contents;					//实际消息文本

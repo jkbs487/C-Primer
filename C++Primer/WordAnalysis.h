@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <sstream>
+#include <functional>
 
 using namespace std;
 
@@ -14,14 +15,19 @@ using namespace std;
 class WordAnalysis {
 private:
 	vector<string> words;
-	
+
 	/**
 	* 处理输入的字符串，以单词为单位
 	* @param str
 	* @return 
 	*/
 	void words_init(const string str);
-
+	/**
+	* 消除重复单词
+	* @param
+	* @return
+	*/
+	void elimDups();
 public:
 	/**
 	* 默认构造函数
@@ -60,10 +66,11 @@ public:
 		}
 		cout << endl;
 	}
+
 	/**
-	* 消除重复单词
-	* @param
+	* 找出大于等于给定长度的单词
+	* @param sz 指定长度
 	* @return
 	*/
-	void elimDups();
+	void biggies(vector<string>::size_type sz, ostream& os = cout, char c = ' ');
 };

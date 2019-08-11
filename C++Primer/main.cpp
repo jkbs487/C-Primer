@@ -25,6 +25,7 @@ void WordAnalysis_test() {
 	string str = "the quick red fox jumps over the slow red turtle";
 	WordAnalysis story(str);
 	story.print();
+	story.biggies(4);
 }
 
 //Œƒ±æ≤È—Ø≤‚ ‘
